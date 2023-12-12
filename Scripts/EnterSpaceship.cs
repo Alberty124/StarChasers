@@ -1,33 +1,30 @@
 using UnityEngine;
 
-public class EnterSpaceship : MonoBehaviour
+public class ActivateSpaceship : MonoBehaviour
 {
-    public GameObject spaceship; 
-    public KeyCode enterKey = KeyCode.F;
-
-    private bool canEnter = false;
+    public GameObject spaceship;
+    private bool isActive = false;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            canEnter = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            canEnter = false;
+            isActive = true;
+            // Activate the spaceship or perform any necessary actions.
+            spaceship.SetActive(true);
         }
     }
 
     private void Update()
     {
-        if (canEnter && Input.GetKeyDown(enterKey))
+        if (isActive && Input.GetKeyDown(KeyCode.F))
         {
-            spaceship.GetComponent<SpaceshipController>().EnterSpaceship();
+            // Perform actions to enter the spaceship (e.g., disable player controls, camera change).
+            // For instance, you can deactivate the player's GameObject to signify the player entering the spaceship.
+            other.gameObject.SetActive(false);
+
+            // Activate spaceship controls or any logic specific to spaceship behavior.
+            spaceship.GetComponent<SpaceshipController>().enabled = true;
         }
     }
 }
