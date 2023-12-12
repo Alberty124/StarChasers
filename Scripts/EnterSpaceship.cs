@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ActivateSpaceship : MonoBehaviour
+public class EnterSpaceship : MonoBehaviour
 {
     public GameObject spaceship;
     private bool isActive = false;
